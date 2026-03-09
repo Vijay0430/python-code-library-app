@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+
+  database:
+    image: databaseimage
+    container_name: database_container
+    ports:
+      - "3306:3306"
+
+  auth_service:
+    image: authimage
+    container_name: auth_container
+    ports:
+      - "5001:5001"
+    depends_on:
+      - db
+
+  book_service:
+    image: bookimage
+    container_name: book_container
+    ports:
+      - "5002:5002"
+    depends_on:
+      - db
+
+  borrow_service:
+    image: borrowimage
+    container_name: borrow_container
+    ports:
+      - "5003:5003"
+    depends_on:
+      - db
+
+  app:
+    image: appimage
+    container_name: library_app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - auth_service
+      - book_service
+      - borrow_service
+      
