@@ -1,13 +1,13 @@
 ---
 services:
   db:
-    container-name: dbcont
+    container_name: dbcont
     image: databaseimage
     ports:
       - "3306:3306"
 
   auth_service:
-    container-name: authcont
+    container_name: authcont
     image: authimage
     ports:
       - "5001:5001"
@@ -15,7 +15,7 @@ services:
       - db
 
   book_service:
-    container-name: bookcont
+    container_name: bookcont
     image: bookimage
     ports:
       - "5002:5002"
@@ -23,7 +23,7 @@ services:
       - db
 
   borrow_service:
-    container-name: borrowcont
+    container_name: borrowcont
     image: borrowimage
     ports:
       - "5003:5003"
@@ -31,7 +31,7 @@ services:
       - db
 
   app_service:
-    container-name: appcont
+    container_name: appcont
     image: appimage
     ports:
       - "5000:5000"
