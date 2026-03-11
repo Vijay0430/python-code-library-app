@@ -1,41 +1,57 @@
----
+version: "3.8"
+
 services:
-  db:
-    container_name: dbcont
-    image: databaseimage
-    ports:
-      - "3306:3306"
 
-  auth_service:
-    container_name: authcont
-    image: authimage
-    ports:
-      - "5001:5001"
-    depends_on:
-      - db
+db:
+container_name: dbcont
+image: databaseimage
+ports:
+- "3306:3306"
+restart: always
+networks:
+- appnet
 
-  book_service:
-    container_name: bookcont
-    image: bookimage
-    ports:
-      - "5002:5002"
-    depends_on:
-      - db
+auth_service:
+container_name: authcont
+image: authimage
+ports:
+- "5001:5001"
+depends_on:
+- db
+networks:
+- appnet
 
-  borrow_service:
-    container_name: borrowcont
-    image: borrowimage
-    ports:
-      - "5003:5003"
-    depends_on:
-      - db
+book_service:
+container_name: bookcont
+image: bookimage
+ports:
+- "5002:5002"
+depends_on:
+- db
+networks:
+- appnet
 
-  app_service:
-    container_name: appcont
-    image: appimage
-    ports:
-      - "5000:5000"
-    depends_on:
-      - auth_service
-      - book_service
-      - borrow_service
+borrow_service:
+container_name: borrowcont
+image: borrowimage
+ports:
+- "5003:5003"
+depends_on:
+- db
+networks:
+- appnet
+
+app_service:
+container_name: appcont
+image: appimage
+ports:
+- "5000:5000"
+depends_on:
+- auth_service
+- book_service
+- borrow_service
+networks:
+- appnet
+
+networks:
+appnet:
