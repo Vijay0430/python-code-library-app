@@ -1,40 +1,38 @@
-version: "3.8"
-
+---
 services:
-
   db:
-    image: suranagavijay63/sura:databaseimage
-    container_name: database_container
+    container-name: dbcont
+    image: databaseimage
     ports:
       - "3306:3306"
 
   auth_service:
-    image: suranagavijay63/sura:authimage
-    container_name: auth_container
+    container-name: authcont
+    image: authimage
     ports:
       - "5001:5001"
     depends_on:
       - db
 
   book_service:
-    image: suranagavijay63/sura:bookimage
-    container_name: book_container
+    container-name: bookcont
+    image: bookimage
     ports:
       - "5002:5002"
     depends_on:
       - db
 
   borrow_service:
-    image: suranagavijay63/sura:borrowimage
-    container_name: borrow_container
+    container-name: borrowcont
+    image: borrowimage
     ports:
       - "5003:5003"
     depends_on:
       - db
 
-  app:
-    image: suranagavijay63/sura:appimage
-    container_name: library_app
+  app_service:
+    container-name: appcont
+    image: appimage
     ports:
       - "5000:5000"
     depends_on:
