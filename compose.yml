@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+
+  db:
+    container_name: db
+    build: ./database
+    ports:
+      - "3306:3306"
+    networks:
+      - appnet
+
+  auth_service:
+    container_name: auth_service
+    build: ./auth
+    ports:
+      - "5001:5001"
+    depends_on:
+      - db
+    networks:
+      - appnet
+
+  book_service:
+    container_name: book_service
+    build: ./book
+    ports:
+      - "5002:5002"
+    depends_on:
+      - db
+    networks:
+      - appnet
+
+  borrow_service:
+    container_name: borrow_service
+    build: ./borrow
+    ports:
+      - "5003:5003"
+    depends_on:
+      - db
+    networks:
+      - appnet
+
+  frontend_service:
+    container_name: frontend_service
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - auth_service
+      - book_service
+      - borrow_service
+    networks:
+      - appnet
+
+networks:
+  appnet:
