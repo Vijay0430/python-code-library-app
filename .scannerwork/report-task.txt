@@ -1,0 +1,6 @@
+projectKey=python-library-app
+serverUrl=http://44.220.48.244:1234
+serverVersion=26.4.0.121862
+dashboardUrl=http://44.220.48.244:1234/dashboard?id=python-library-app
+ceTaskId=8bd068fd-580b-4209-80c9-fb1620478e82
+ceTaskUrl=http://44.220.48.244:1234/api/ce/task?id=8bd068fd-580b-4209-80c9-fb1620478e82

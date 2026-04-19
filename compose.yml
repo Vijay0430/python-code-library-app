@@ -4,7 +4,7 @@ services:
 
   db:
     container_name: db
-    build: ./database
+    images: suranagavijay63/dockerrepo:dbimage
     ports:
       - "3306:3306"
     networks:
@@ -12,7 +12,7 @@ services:
 
   auth_service:
     container_name: auth_service
-    build: ./auth
+    images: suranagavijay63/dockerrepo:authimage
     ports:
       - "5001:5001"
     depends_on:
@@ -22,7 +22,7 @@ services:
 
   book_service:
     container_name: book_service
-    build: ./book
+    images: suranagavijay63/dockerrepo:bookimage
     ports:
       - "5002:5002"
     depends_on:
@@ -32,7 +32,7 @@ services:
 
   borrow_service:
     container_name: borrow_service
-    build: ./borrow
+    images: suranagavijay63/dockerrepo:borrowimage
     ports:
       - "5003:5003"
     depends_on:
@@ -42,7 +42,7 @@ services:
 
   frontend_service:
     container_name: frontend_service
-    build: .
+    images: suranagavijay63/dockerrepo:frontendimage
     ports:
       - "5000:5000"
     depends_on:
